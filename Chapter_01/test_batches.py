@@ -20,3 +20,7 @@ def test_can_allocate_if_available_greater_than_required():
 def test_cannot_allocate_if_available_smaller_than_required():
     small_batch, large_line = make_batch_and_line()
     assert small_batch.can_allocate(large_line) is False
+
+def test_can_allocate_if_available_equal_to_required():
+    batch, line = make_batch_and_line("ELEGANT-LAMP", 2, 2)
+    assert batch.can_allocate(line)
