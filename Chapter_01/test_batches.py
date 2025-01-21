@@ -7,3 +7,12 @@ def test_allocating_to_a_batch_reduces_the_available_quantity():
 
     batch.allocate(line)
     assert batch.available_quantity == 18
+
+def make_batch_and_line(sku, batch_qty, line_qty):
+    return (
+        Batch("batch-001", sku, batch_qty, eta=date.today()), Orderline("order-123", sku, line_qty)
+    )
+
+def test_cannot_allocate_if_available_smaller_than_required():
+    small_batch, large_line = make_batch_and_line()
+    assert small_batch.can_allocate(large_line) is False
