@@ -1,4 +1,4 @@
-from .model import Batch, Orderline 
+from .model import Batch, Orderline, Name, Money, Line
 from datetime import date
 
 def test_allocating_to_a_batch_reduces_the_available_quantity():
@@ -40,3 +40,8 @@ def test_allocation_is_idempotent():
     batch.allocate(line)
     batch.allocate(line)
     assert batch.available_quantity == 18
+
+def test_quality():
+    assert Money('gbp', 10) == Money('gbp', 10)
+    assert Name('Harry', 'Percival') != Name('Bob', 'Gregory')
+    assert Line('RED-CHAIR', 5) == Line('RED-CHAIR', 5)

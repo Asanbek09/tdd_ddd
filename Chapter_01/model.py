@@ -2,10 +2,23 @@ from dataclasses import dataclass
 from typing import Optional
 from datetime import date
 from typing import NewType
+from typing import NamedTuple
+from collections import namedtuple
 
 Quantity = NewType("Quantity", int)
 Sku = NewType("Sku", str)
 Reference = NewType("Reference", str)
+
+@dataclass(frozen=True)
+class Name:
+    first_name: str
+    surname: str
+
+class Money(NamedTuple):
+    currency: str
+    value: int
+
+Line = namedtuple('Line', ['sku', 'qty'])
 
 @dataclass(frozen=True)
 class Orderline:
