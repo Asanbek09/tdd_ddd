@@ -21,6 +21,10 @@ class Batch:
     def allocate(self, line: Orderline):
         if self.can_allocate(line):
             self._allocations.remove(line)
+    
+    def deallocate(self, line: Orderline):
+        if line in self._allocations:
+            self._allocations.remove(line)
 
 
     def can_allocate(self, line:Orderline) -> bool:
