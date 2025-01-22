@@ -26,6 +26,10 @@ class Batch:
         if line in self._allocations:
             self._allocations.remove(line)
 
+    @property
+    def allocated_quantity(self) -> int:
+        return sum(line.qty for line in self._allocations)
+
 
     def can_allocate(self, line:Orderline) -> bool:
         return self.sku == line.sku and self.available_quantity >= line.qty
