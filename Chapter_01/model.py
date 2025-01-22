@@ -1,6 +1,11 @@
 from dataclasses import dataclass
 from typing import Optional
 from datetime import date
+from typing import NewType
+
+Quantity = NewType("Quantity", int)
+Sku = NewType("Sku", str)
+Reference = NewType("Reference", str)
 
 @dataclass(frozen=True)
 class Orderline:
@@ -11,7 +16,7 @@ class Orderline:
 
 class Batch:
     
-    def __init__(self, ref: str, sku: str, qty: int, eta: Optional[date]):
+    def __init__(self, ref: Reference, sku: Sku, qty: int, eta: Optional[date]):
         self.reference = ref
         self.sku = sku
         self.eta = eta
